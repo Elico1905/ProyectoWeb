@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Proyecto web</string>
+    <string name="text_subrayado"><u>¿Quienes somos?</u></string>
+    <string name="prefs_file">com.elico.ProyectoWeb.PREFERENCE_FILE_KEY</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
