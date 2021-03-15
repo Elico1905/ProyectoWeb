@@ -49,7 +49,7 @@
             android:layout_marginEnd="10dp"
             android:clickable="true"
             android:foreground="@drawable/effect_ripple_2"
-            android:paddingBottom="10dp"
+            android:paddingBottom="15dp"
             android:text="@string/text_subrayado"
             android:textColor="#e7e7e7"
             android:textSize="15dp" />
@@ -90,9 +90,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#1D000000" />
-
-
-
 
 
             <RelativeLayout
@@ -138,5 +135,70 @@
 
     </LinearLayout>
 
+
+    <RelativeLayout
+        android:id="@+id/integrantes"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#BC232323"
+        android:gravity="center">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            app:cardCornerRadius="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Integrantes:"
+                        android:textSize="30dp" />
+
+                    <ImageView
+                        android:id="@+id/salir_integrantes"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/equis" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="~ Gonzalo Ballesteros Martinez \n~ Edgar Chamacho Cruz\n~ Ignacio Luz Reyes \n~ Marisol Garcia Perez"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Grupo: 078CA"
+                    android:textSize="23dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
