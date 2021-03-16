@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#00796B</color>
+    <color name="colorPrimary">#922979FF</color>
     <color name="colorPrimaryVariant">#2979FF</color>
     <color name="colorOnPrimary">#e7e7e7</color>
 
     <color name="negro_msm">#BC232323</color>
     <color name="negro_true">#24395c</color>
-
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
