@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -19,13 +20,18 @@ import kotlinx.android.synthetic.main.activity_login.*
 class Login : AppCompatActivity() {
 
     private val GOOGLE_SING_IN = 100
+
     private val bd = FirebaseFirestore.getInstance()
+
+    private lateinit var animacion: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         setContentView(R.layout.activity_login)
         leer()
+        cargarAnimacion()
+
         cardView_google.setOnClickListener {
             login()
         }
@@ -64,6 +70,7 @@ class Login : AppCompatActivity() {
             try {
                 val account = task.getResult(ApiException::class.java)
                 if (account != null) {
+                    mostrarAnimacion()
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
@@ -88,6 +95,7 @@ class Login : AppCompatActivity() {
 
     private fun mostrarIntegrantes(){
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+
         window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true);
         integrantes.visibility = View.VISIBLE
     }
@@ -96,6 +104,21 @@ class Login : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_false);
         integrantes.visibility = View.GONE
     }
+
+
+
+    private fun cargarAnimacion(){
+        login_animacion.setAnimation(R.raw.loading)
+    }
+
+    private fun mostrarAnimacion(){
+        login_load.visibility = View.VISIBLE
+
+        login_animacion.loop(true)
+        login_animacion.repeatCount
+        login_animacion.playAnimation()
+    }
+
 
     override fun onBackPressed() {
         //super.onBackPressed()

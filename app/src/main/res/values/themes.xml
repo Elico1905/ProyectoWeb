@@ -2,9 +2,9 @@
 
     <style name="Theme.ProyectoWeb" parent="Theme.MaterialComponents.Light.NoActionBar">
 
-        <item name="colorPrimary">#00796B</item>
-        <item name="colorPrimaryVariant">#009688</item>
-        <item name="colorOnPrimary">#e7e7e7</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
 
         <item name="colorOnSecondary">@color/black</item>
 
