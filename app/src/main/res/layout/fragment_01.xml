@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e7e7e7"
+    android:background="@color/colorOnPrimary"
     tools:context=".fragments.Fragment01">
 
     <LinearLayout

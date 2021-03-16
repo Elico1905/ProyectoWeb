@@ -5,7 +5,9 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
@@ -85,7 +87,15 @@ class Login : AppCompatActivity() {
                             prefs.putString("nombre", account.givenName.toString())
                             prefs.putString("user", "U")
                             prefs.apply()
-                            leer()
+
+                            val timer = object : CountDownTimer(3000, 1000) {
+                                override fun onTick(millisUntilFinished: Long) {}
+                                override fun onFinish() {
+                                    leer()
+                                }
+                            }
+                            timer.start()
+
                         }
                     }
                 }
@@ -95,28 +105,29 @@ class Login : AppCompatActivity() {
 
     private fun mostrarIntegrantes(){
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-
         window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true);
         integrantes.visibility = View.VISIBLE
     }
     private fun ocultarIntegrantes(){
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_false);
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.colorPrimaryVariant);
         integrantes.visibility = View.GONE
     }
 
 
 
     private fun cargarAnimacion(){
-        login_animacion.setAnimation(R.raw.loading)
+        login_animacion.setAnimation(R.raw.loading_3)
     }
 
     private fun mostrarAnimacion(){
         login_load.visibility = View.VISIBLE
-
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true);
         login_animacion.loop(true)
         login_animacion.repeatCount
         login_animacion.playAnimation()
+
     }
 
 

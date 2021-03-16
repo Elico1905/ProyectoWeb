@@ -15,11 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/CustomTabStyle"
-            android:background="#009688"
+            android:background="@color/colorPrimaryVariant"
             app:tabGravity="fill"
             app:tabMode="fixed"
-            app:tabTextColor="#e7e7e7"
-            app:tabIconTint="#e7e7e7"
+            app:tabTextColor="@color/colorOnPrimary"
+            app:tabIconTint="@color/colorOnPrimary"
             app:tabIndicatorColor="@color/white"/>
 
     </com.google.android.material.appbar.AppBarLayout>
