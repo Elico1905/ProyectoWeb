@@ -76,12 +76,12 @@ class Login : AppCompatActivity() {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            /*bd.collection("users").document(account.email.toString()).set(
+                            bd.collection("users").document(account.email.toString()).set(
                                     hashMapOf("correo" to account.email.toString(),
                                             "nombre" to account.givenName.toString(),
                                             "user" to "U"))
 
-                             */
+
                             val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                             prefs.putString("email", account.email.toString())
                             prefs.putString("nombre", account.givenName.toString())
