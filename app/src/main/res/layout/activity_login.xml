@@ -9,130 +9,158 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <View
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/colorPrimaryVariant" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="¿Listo para comenzar?"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="25dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_inferior" />
-    </RelativeLayout>
+            android:scaleType="matrix"
+            app:srcCompat="@drawable/foto" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|end">
 
         <TextView
-            android:id="@+id/txt1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:clickable="true"
-            android:foreground="@drawable/effect_ripple_2"
-            android:paddingBottom="15dp"
-            android:text="@string/text_subrayado"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="15dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#411976D2" />
+
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-70dp"
-        android:gravity="center"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="20dp"
-            android:background="#f5f3e5"
-            android:clickable="true"
-            app:cardCornerRadius="15dp">
+            android:layout_marginTop="100dp"
+            android:gravity="bottom"
+            android:rotationY="180"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_centro" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="matrix"
-                    app:srcCompat="@drawable/foto" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#1D000000" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:paddingBottom="30dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView_google"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/effect_ripple"
-                    app:cardCornerRadius="20dp"
-                    app:contentPadding="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/ic_google" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:text="Inicia sesión con Google"
-                            android:textSize="20dp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary" />
 
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-130dp"
+            android:fontFamily="@font/jerseym54"
+            android:gravity="center"
+            android:text="H''E''L''L''O"
+            android:textColor="@color/blanco"
+            android:textSize="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-15dp"
+            android:gravity="center"
+            android:text="Sing in to your acount"
+            android:textColor="@color/Blanco_Letras"
+            android:textSize="28dp" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rotationY="180"
+            android:scaleType="fitEnd"
+            app:srcCompat="@drawable/ic_inferior" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:clickable="true"
+                android:id="@+id/txt1"
+                android:foreground="@drawable/effect_ripple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="end"
+                android:text="Integrantes"
+                android:textColor="@color/Blanco_Letras"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingTop="120dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:foreground="@drawable/effect_ripple_02"
+            app:cardCornerRadius="7dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_google" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:text="Inicia sesión con Google"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+
+
 
     <RelativeLayout
         android:id="@+id/login_load"

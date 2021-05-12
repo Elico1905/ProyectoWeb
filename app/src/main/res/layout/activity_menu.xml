@@ -20,7 +20,7 @@
             app:tabMode="fixed"
             app:tabTextColor="@color/colorOnPrimary"
             app:tabIconTint="@color/colorOnPrimary"
-            app:tabIndicatorColor="@color/white"/>
+            app:tabIndicatorColor="@color/blanco"/>
 
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager.widget.ViewPager

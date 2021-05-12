@@ -31,11 +31,12 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         setContentView(R.layout.activity_login)
-        leer()
+
         cargarAnimacion()
 
         cardView_google.setOnClickListener {
-            login()
+            //login()
+            mostrarAnimacion()
         }
         txt1.setOnClickListener {
             mostrarIntegrantes()
@@ -54,17 +55,7 @@ class Login : AppCompatActivity() {
         startActivityForResult(googleClient.signInIntent, GOOGLE_SING_IN)
     }
 
-    private fun leer() {
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        var correo: String? = prefs.getString("correo", "null")
-        var nombre: String? = prefs.getString("nombre", "null")
 
-        if (!nombre.equals("null") || !correo.equals("null")) {
-            val intent: Intent = Intent(this, ActivityMenu::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GOOGLE_SING_IN) {
@@ -72,44 +63,27 @@ class Login : AppCompatActivity() {
             try {
                 val account = task.getResult(ApiException::class.java)
                 if (account != null) {
-                    mostrarAnimacion()
+                    //mostrarAnimacion()
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            bd.collection("users").document(account.email.toString()).set(
-                                    hashMapOf("correo" to account.email.toString(),
-                                            "nombre" to account.givenName.toString(),
-                                            "user" to "U"))
-
-
-                            val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-                            prefs.putString("email", account.email.toString())
-                            prefs.putString("nombre", account.givenName.toString())
-                            prefs.putString("user", "U")
-                            prefs.apply()
-
-                            val timer = object : CountDownTimer(3000, 1000) {
-                                override fun onTick(millisUntilFinished: Long) {}
-                                override fun onFinish() {
-                                    leer()
-                                }
-                            }
-                            timer.start()
-
-                        }
+                        //account.givenName.toString()
+                        Toast.makeText(this, "${account.email.toString()}", Toast.LENGTH_SHORT).show()
+                        println("${account.email.toString()}")
                     }
+                }else{
+                    //error de que no hay cuenta
                 }
             } catch (e: ApiException) {}
         }
     }
 
     private fun mostrarIntegrantes(){
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true);
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true)
         integrantes.visibility = View.VISIBLE
     }
     private fun ocultarIntegrantes(){
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+        window.decorView.systemUiVisibility = View.STATUS_BAR_VISIBLE
         window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.colorPrimaryVariant);
         integrantes.visibility = View.GONE
     }
@@ -122,19 +96,26 @@ class Login : AppCompatActivity() {
 
     private fun mostrarAnimacion(){
         login_load.visibility = View.VISIBLE
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true);
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true)
         login_animacion.loop(true)
         login_animacion.repeatCount
         login_animacion.playAnimation()
+    }
 
+    private fun ocultarAnimacion(){
+        login_load.visibility = View.GONE
+        window.decorView.systemUiVisibility = View.STATUS_BAR_VISIBLE
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.colorPrimaryVariant);
+        login_animacion.pauseAnimation()
     }
 
 
     override fun onBackPressed() {
         //super.onBackPressed()
-        if(integrantes.visibility == View.VISIBLE){
+        /*if(integrantes.visibility == View.VISIBLE){
             ocultarIntegrantes()
-        }
+        }*/
+        ocultarAnimacion()
     }
 }
