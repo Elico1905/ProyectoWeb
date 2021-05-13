@@ -19,15 +19,13 @@ class ActivityMenu : AppCompatActivity() {
     private fun setUpTabs(){
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(Fragment01(),"Inicio")
-        adapter.addFragment(Fragment02(),"Actividad")
         adapter.addFragment(Fragment03(),"Configracion")
 
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
         tabs.getTabAt(0)!!.setIcon(R.drawable.ic_home)
-        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_graph)
-        tabs.getTabAt(2)!!.setIcon(R.drawable.ic_settings)
+        tabs.getTabAt(1)!!.setIcon(R.drawable.ic_settings)
 
     }
 }

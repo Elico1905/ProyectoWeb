@@ -8,17 +8,78 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FF6D00">
 
-        <TextView
-            android:id="@+id/fragment01_mensaje"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="hola user"
-            android:textSize="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/termometro"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:textFontWeight="1"
+                android:background="@color/colorPrimary"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/imagen"
+                android:scaleType="centerCrop"/>
+            <TextView
+                android:layout_marginTop="480dp"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:textFontWeight="1"
+                android:background="@color/colorOnPrimary"/>
+        </RelativeLayout>
+
+
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/actualizar"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_actualizar"
+                android:foreground="@drawable/effect_ripple_blanco"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/temperatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="24°C"
+                android:textSize="60dp"
+                android:textAlignment="center"
+                android:paddingBottom="50dp"
+                android:textColor="@color/colorPrimaryVariant"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ultima actualizacion: 12/05/2021 a las 10:48 pm"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
 
 </FrameLayout>

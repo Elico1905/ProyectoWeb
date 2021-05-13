@@ -1,16 +1,18 @@
 package com.elico.proyectoweb
 
-import android.content.Context
+
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.LottieAnimationView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -18,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 class Login : AppCompatActivity() {
 
@@ -36,7 +40,7 @@ class Login : AppCompatActivity() {
 
         cardView_google.setOnClickListener {
             //login()
-            mostrarAnimacion()
+            getData("pepe")
         }
         txt1.setOnClickListener {
             mostrarIntegrantes()
@@ -63,12 +67,10 @@ class Login : AppCompatActivity() {
             try {
                 val account = task.getResult(ApiException::class.java)
                 if (account != null) {
-                    //mostrarAnimacion()
+                    mostrarAnimacion()
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
-                        //account.givenName.toString()
-                        Toast.makeText(this, "${account.email.toString()}", Toast.LENGTH_SHORT).show()
-                        println("${account.email.toString()}")
+                        getData(account.email.toString())
                     }
                 }else{
                     //error de que no hay cuenta
@@ -110,12 +112,38 @@ class Login : AppCompatActivity() {
         login_animacion.pauseAnimation()
     }
 
+    private fun getData(dato:String){
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://192.168.1.68/smarthomerest/GetData.php?key=1&user_name=${dato}"
+
+        val stringRequest = StringRequest(Request.Method.GET,url, Response.Listener {response  ->
+            if (response.equals("ok")){
+                val intent: Intent = Intent (this, ActivityMenu::class.java)
+                startActivity(intent)
+                finish()
+            }
+            if (response.equals("registrado")){
+                val intent: Intent = Intent (this, ActivityMenu::class.java)
+                startActivity(intent)
+                finish()
+            }
+            if (response.equals("error")){
+                Toast.makeText(this, "algo salio mal, intenta de nuevo", Toast.LENGTH_SHORT).show()
+                ocultarAnimacion()
+            }
+        },Response.ErrorListener {
+            Toast.makeText(this, "error: ${it.message}", Toast.LENGTH_SHORT).show()
+        })
+        queue.add(stringRequest)
+
+
+    }
 
     override fun onBackPressed() {
         //super.onBackPressed()
-        /*if(integrantes.visibility == View.VISIBLE){
+        if(integrantes.visibility == View.VISIBLE){
             ocultarIntegrantes()
-        }*/
-        ocultarAnimacion()
+        }
+
     }
 }
