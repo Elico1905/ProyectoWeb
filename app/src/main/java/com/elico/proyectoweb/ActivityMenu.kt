@@ -28,4 +28,8 @@ class ActivityMenu : AppCompatActivity() {
         tabs.getTabAt(1)!!.setIcon(R.drawable.ic_settings)
 
     }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
 }

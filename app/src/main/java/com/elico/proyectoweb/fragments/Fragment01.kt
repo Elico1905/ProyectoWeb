@@ -18,6 +18,8 @@ import com.elico.proyectoweb.ActivityMenu
 import com.elico.proyectoweb.R
 import kotlinx.android.synthetic.main.fragment_01.*
 import kotlinx.android.synthetic.main.fragment_01.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Fragment01 : Fragment() {
 
@@ -50,6 +52,7 @@ class Fragment01 : Fragment() {
                 params.topMargin = Transformar(dato)
                 view.termometro.layoutParams = params
                 view.temperatura.text = "${dato}°C"
+                view.datos.text = "${getDataHora()}"
             }
         }, Response.ErrorListener {
             Toast.makeText(context, "algo salio mal, intenta de nuevo", Toast.LENGTH_SHORT).show()
@@ -58,7 +61,16 @@ class Fragment01 : Fragment() {
 
     }
 
+    private fun getDataHora():String{
+        val fecha = SimpleDateFormat("dd/M/yyyy")
+        val Datefecha = fecha.format(Date())
 
+        val hora = SimpleDateFormat("HH:mm:ss")
+        val Datehora = hora.format(Date())
+
+        var datos:String = "Ultima actualizacion: ${Datefecha} a las ${Datehora}"
+        return  datos
+    }
 
     private fun leer(): String {
         val prefs = activity?.getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)

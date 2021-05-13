@@ -1,6 +1,7 @@
 package com.elico.proyectoweb
 
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -35,12 +36,16 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         setContentView(R.layout.activity_login)
-
+        leerPrefs()
         cargarAnimacion()
 
+        boton_registrar.setOnClickListener {
+            val intent: Intent = Intent (this, ActivityMenu::class.java)
+            startActivity(intent)
+            finish()
+        }
         cardView_google.setOnClickListener {
-            //login()
-            getData("pepe")
+            login()
         }
         txt1.setOnClickListener {
             mostrarIntegrantes()
@@ -118,14 +123,23 @@ class Login : AppCompatActivity() {
 
         val stringRequest = StringRequest(Request.Method.GET,url, Response.Listener {response  ->
             if (response.equals("ok")){
+                val prefs =getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+                prefs.putString("correo", dato)
+                prefs.apply()
+
                 val intent: Intent = Intent (this, ActivityMenu::class.java)
                 startActivity(intent)
                 finish()
             }
             if (response.equals("registrado")){
-                val intent: Intent = Intent (this, ActivityMenu::class.java)
-                startActivity(intent)
-                finish()
+                val prefs =getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+                prefs.putString("correo", dato)
+                prefs.apply()
+                ocultarAnimacion()
+
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.negro_true)
+                mensaje_registrar.visibility = View.VISIBLE
             }
             if (response.equals("error")){
                 Toast.makeText(this, "algo salio mal, intenta de nuevo", Toast.LENGTH_SHORT).show()
@@ -146,4 +160,17 @@ class Login : AppCompatActivity() {
         }
 
     }
+
+
+    private fun leerPrefs(){
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val Correo: String? = prefs.getString("correo", "2021ff")
+
+        if (!Correo.equals("2021ff")){
+            val intent: Intent = Intent (this, ActivityMenu::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
 }

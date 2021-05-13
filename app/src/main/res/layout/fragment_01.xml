@@ -70,7 +70,7 @@
                 android:textColor="@color/colorPrimaryVariant"/>
 
             <TextView
-
+                android:id="@+id/datos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ultima actualizacion: 12/05/2021 a las 10:48 pm"
