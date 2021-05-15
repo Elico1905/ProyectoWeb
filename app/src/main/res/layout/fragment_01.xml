@@ -63,7 +63,7 @@
                 android:id="@+id/temperatura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="24°C"
+                android:text="50°C"
                 android:textSize="60dp"
                 android:textAlignment="center"
                 android:paddingBottom="50dp"

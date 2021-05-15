@@ -254,7 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="~ Gonzalo Ballesteros Martinez \n~ Edgar Chamacho Cruz\n~ Ignacio Luz Reyes \n~ Marisol Garcia Perez"
+                    android:text="~ Gonzalo Ballesteros Martinez \n~ Edgar Camacho Cruz\n~ Ignacio Luz Reyes \n~ Marisol Garcia Perez"
                     android:textSize="20dp" />
 
                 <TextView

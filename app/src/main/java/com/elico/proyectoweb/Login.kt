@@ -27,14 +27,14 @@ import org.json.JSONObject
 class Login : AppCompatActivity() {
 
     private val GOOGLE_SING_IN = 100
-
-    private val bd = FirebaseFirestore.getInstance()
+    private var photo:String = ""
+    private var nombre:String = ""
 
     private lateinit var animacion: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_login)
         leerPrefs()
         cargarAnimacion()
@@ -75,6 +75,9 @@ class Login : AppCompatActivity() {
                     mostrarAnimacion()
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
+                        photo = account.photoUrl.toString()
+                        nombre = account.givenName.toString()
+
                         getData(account.email.toString())
                     }
                 }else{
@@ -119,12 +122,14 @@ class Login : AppCompatActivity() {
 
     private fun getData(dato:String){
         val queue = Volley.newRequestQueue(this)
-        val url = "http://192.168.1.68/smarthomerest/GetData.php?key=1&user_name=${dato}"
+        val url = "https://elicoproyectoweb.000webhostapp.com//GetData.php?key=1&user_name=${dato}"
 
         val stringRequest = StringRequest(Request.Method.GET,url, Response.Listener {response  ->
             if (response.equals("ok")){
                 val prefs =getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                 prefs.putString("correo", dato)
+                prefs.putString("photo", photo)
+                prefs.putString("nombre", nombre)
                 prefs.apply()
 
                 val intent: Intent = Intent (this, ActivityMenu::class.java)
@@ -134,6 +139,8 @@ class Login : AppCompatActivity() {
             if (response.equals("registrado")){
                 val prefs =getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
                 prefs.putString("correo", dato)
+                prefs.putString("photo", photo)
+                prefs.putString("nombre", nombre)
                 prefs.apply()
                 ocultarAnimacion()
 
@@ -146,7 +153,7 @@ class Login : AppCompatActivity() {
                 ocultarAnimacion()
             }
         },Response.ErrorListener {
-            Toast.makeText(this, "error: ${it.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error al conectar al servidor", Toast.LENGTH_LONG).show()
         })
         queue.add(stringRequest)
 

@@ -1,5 +1,6 @@
 package com.elico.proyectoweb
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.elico.proyectoweb.fragments.Fragment01
@@ -10,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_menu.*
 class ActivityMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_menu)
 
         setUpTabs()
@@ -19,7 +21,7 @@ class ActivityMenu : AppCompatActivity() {
     private fun setUpTabs(){
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(Fragment01(),"Inicio")
-        adapter.addFragment(Fragment03(),"Configracion")
+        adapter.addFragment(Fragment03(),"Informacion")
 
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)

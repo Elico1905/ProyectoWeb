@@ -42,7 +42,7 @@ class Fragment01 : Fragment() {
         var dato:Int = 10
 
         val queue = Volley.newRequestQueue(context)
-        val url = "http://192.168.1.68/smarthomerest/GetData.php?key=2"
+        val url = "https://elicoproyectoweb.000webhostapp.com/GetData.php?key=2"
         val stringRequest = StringRequest(Request.Method.GET,url, Response.Listener { response  ->
             if (response.equals("error")){
                 Toast.makeText(context, "algo salio mal, intenta de nuevo", Toast.LENGTH_SHORT).show()
@@ -55,7 +55,7 @@ class Fragment01 : Fragment() {
                 view.datos.text = "${getDataHora()}"
             }
         }, Response.ErrorListener {
-            Toast.makeText(context, "algo salio mal, intenta de nuevo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Error al conectar al servidor", Toast.LENGTH_LONG).show()
         })
         queue.add(stringRequest)
 
